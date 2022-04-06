@@ -65,3 +65,8 @@ Array.prototype.uniques = function() {
 Array.prototype.variance = function() {
   return this.ss()/this.length;
 };
+Array.prototype.zscores = function() {
+  let mean = this.mean();
+  let sd = this.sd();
+  return this.map(x => (x - mean)/sd);
+};
