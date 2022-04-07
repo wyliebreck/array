@@ -18,6 +18,9 @@ Array.prototype.frequencies = function() {
   for (let [key, value] of Object.entries(frequencies)) tbl.insert({value: key, frequency: value});
   return tbl;
 }
+Array.prototype.gmean = function() {
+  return Math.pow(this.product(), 1/this.length);
+};
 Array.prototype.max = function() {
   this.checkSomeAndAllNumbers();
   return Math.max(...this);
@@ -38,6 +41,10 @@ Array.prototype.pb = function(y) {
   let x = [...x0, ...x1];
   return (x1.mean()-x0.mean())/x.sd() * Math.sqrt(x1.length*x0.length / x.length**2);
 }
+Array.prototype.product = function() {
+  this.checkSomeAndAllNumbers();
+  return this.reduce((result, x) => result * x, 0);
+};
 Array.prototype.quantile = function(q) {
   this.checkSomeAndAllNumbers();
   this.sort((a, b) => a - b);
